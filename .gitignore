@@ -1,0 +1,17 @@
+target/
+bin/
+.classpath
+.project
+.settings/
+.idea/
+logs
+.tomcatplugin;
+.#webclasspath
+/work/
+/tomcat*
+/catalina.base*
+tomcat*
+*.iml
+*.lock
+*.log
+.temp/

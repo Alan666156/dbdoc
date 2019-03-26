@@ -1,0 +1,140 @@
+#define layout()
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="description" content="DB表结构">
+<meta name="keywords" content="DB数据字典">
+<title>MySQLDoc</title>
+<!-- Favicons-->
+<link rel="apple-touch-icon-precomposed"
+	href="#(ctx)/assets/images/favicon/apple-touch-icon-152x152.png">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="#(ctx)/assets/images/favicon/mstile-144x144.png">
+<link rel="icon" href="#(ctx)/assets/images/favicon/favicon-32x32.png" sizes="32x32">
+<!--  Android 5 Chrome Color-->
+<meta name="theme-color" content="#EE6E73">
+<!-- CSS-->
+<link type="text/css" rel="stylesheet" href="#(ctx)/assets/materialize/css/materialize.min.css"
+	media="screen,projection" />
+<link href="#(ctx)/assets/iconfont/material-icons.css" rel="stylesheet">
+<link href="#(ctx)/assets/css/style.css?#(version)" rel="stylesheet">
+<script type="text/javascript">
+  var ctx='#(ctx)';
+</script>
+</head>
+<body>
+	<header>
+		<nav class="top-nav">
+			<div class="container">
+				<div class="nav-wrapper">
+					<a href="#" data-activates="slide-out" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only button-side">
+						<i class="material-icons">menu</i>
+					</a> 
+					<a class="page-title flow-text dropdown-button" href="javascript:;" data-constrainwidth="false"  data-activates="dropdown1">
+						#if(config.dbtype==0)
+						   #(tableName??)
+						#else
+						   #(config.name??)
+						#end
+					</a>
+                    <ul id="dropdown1" class="right dropdown-content">
+					 	#if(config.dbtype==0)
+                           #for(d : databases)
+                            <li><a href="#(ctx)/#(config.id??)-#(d.name)">#(d.name)</a></li>
+                           #end
+					 	#end
+                    </ul>
+					<ul class="left hide-on-med-and-down">
+						<li><a data-activates="slide-out" class="button-side"><i class="material-icons">list</i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="container">
+				<a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only">
+					<i class="material-icons">menu</i>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<div id="slide-out" class="side-nav">
+		<div class="row">
+			<div class="col s12">
+				<div class="card small">
+					<div class="card-image">
+						<img src="#(ctx)/assets/images/desktop.jpg">
+					</div>
+					<div class="card-content">
+						<span class="card-title activator grey-text text-darken-4">#(config.name??)<i
+							class="material-icons right">more_vert</i></span>
+						<p>IP地址:#(config.ip??)</p>
+						<p>用户名:#(config.username??) 端口:#(config.port??)</p>
+					</div>
+					<div class="card-reveal">
+						<span class="card-title grey-text text-darken-4">连接列表<i class="material-icons right">close</i></span>
+						<a class="secondary-content addBtn" href="javascript:;"><i class="material-icons">add</i></a>
+						<br>
+						#for(l:links)
+						<p>#(l.name) 
+							<a href="javascript:;" class="secondary-content deleteBtn" data-id="#(l.id)"><i class="material-icons">delete</i></a>
+							<a href="javascript:;" class="secondary-content editBtn" data-id="#(l.id)"><i class="material-icons">mode_edit</i></a>
+						</p>
+						#end
+					</div>
+				</div>
+			</div>
+			<div class="col s12">
+				<div class="collection">
+					#for(l:links)
+					   <a href="#(ctx)/#(l.id)" class="collection-item #(l.id == config.id ?'active':'')">#(l.name)</a> 
+					#end
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal Structure -->
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+		    <div id="divform">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="javascript:;" class="modal-action waves-effect waves-green btn-flat btn-test">测试连接</a> 
+			<a href="javascript:;" class="modal-action waves-effect waves-green btn-flat btn-submit">提交</a>
+		</div>
+	</div>
+	
+	 <!-- Modal Structure -->
+  <div id="modal-confirm" class="modal">
+    <div class="modal-content">
+      <p>确定删除吗？</p>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:;" class="modal-action modal-close waves-effect waves-green btn-flat">关闭</a>
+      <a href="javascript:;" class="waves-effect waves-light btn-flat red btnDelete">删除</a>
+    </div>
+  </div>
+	
+	<main> #@main() </main>
+	<footer class="page-footer">
+		<div class="footer-copyright" style="text-align:center;">
+			<div class="container">
+				Copyright © 2019 
+			</div>
+		</div>
+	</footer>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="#(ctx)/assets/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="#(ctx)/assets/materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="#(ctx)/assets/js/pace.min.js"></script>
+	<script type="text/javascript" src="#(ctx)/assets/js/masonry.pkgd.min.js"></script>
+	<script type="text/javascript" src="#(ctx)/assets/js/init.js?#(version)"></script>
+	<!-- 页面JS -->
+	#@js?()
+</body>
+</html>
+#end

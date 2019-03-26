@@ -1,0 +1,46 @@
+<div class="row">
+    <input type="hidden" value="#(model.id??)" name="id">
+	<div class="input-field col s5">
+		<input id="name" type="text" name="name" class="validate" required="required" value="#(model.name??)"> <label
+			for="name">连接名</label>
+	</div>
+	<div class="input-field col s4">
+		<input id="ip" type="text" name="ip" class="validate" required="required" value="#(model.ip??)"> <label for="ip">主机名或IP地址</label>
+	</div>
+	<div class="input-field col s3">
+		<input id="port" type="number" name="port" class="validate"  required="required" value="#(model.port??)">
+		<label for="port">端口</label>
+	</div>
+</div>
+<div class="row">
+	<div class="input-field col s6">
+		<input id="username" type="text" name="username" class="validate" required="required" value="#(model.username??)"> <label
+			for="username">用户名</label>
+	</div>
+	<div class="input-field col s6">
+		<input id="password" type="password" name="password" class="validate" required="required" value="#(model.password??)">
+		<label for="password">密码</label>
+	</div>
+	<div class="input-field col s6 ">
+		<input name="dbtype" type="radio" id="mysql" value="0" />
+		<label for="mysql">mysql</label>
+		<input name="dbtype" type="radio" id="oracle" value="1"/>
+		<label for="oracle">oracle</label>
+	</div>
+	<div class="input-field col s6 osid" style="display: none">
+		<input id="SID" type="text" name="SID" class="validate" required="required" value="#(model.SID??)"/>
+		<label for="SID">SID服务名(SERVICE_NAME)</label>
+	</div>
+	<script>
+		var dbt;
+		$(":radio").click(function(){
+			dbt=$(this).val();
+			if(dbt==1){
+				$(".osid").css("display","block");
+			}else{
+				$(".osid").css("display","none");
+			}
+		})
+
+	</script>
+</div>

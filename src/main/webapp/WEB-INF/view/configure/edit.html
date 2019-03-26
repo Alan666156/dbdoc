@@ -1,0 +1,16 @@
+<h4>修改数据库信息</h4>
+<div class="row">
+	<form id="likeForm" action="#(ctx)/configure/update">
+		#include("_form.html")
+		<input type="hidden" id="dt" value="#(model.dbtype??)">
+	</form>
+	<script>
+      var dtv = $("#dt").val();
+		if(dtv==1){
+			$("#oracle").attr("checked","checked");
+			$(".osid").css("display","block");
+		}else{
+			$("#mysql").attr("checked","checked");
+	  }
+	</script>
+</div>

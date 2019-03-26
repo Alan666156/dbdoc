@@ -1,0 +1,42 @@
+#@layout() #define main()
+<div class="row grid">
+	#for(t:tables)
+	<div class="col s12 m6 l6 grid-item">
+		<div class="card-panel hoverable">
+			<span class="card-title" style="color: red;"><b>#(t.name) #(t.comment??)</b></span>
+			<div class="card-content">
+				<table class="bordered highlight">
+					<thead>
+						<tr>
+							<th>字段名</th>
+							<th>类型</th>
+							<th>是否可为空</th>
+							<th>默认值</th>
+							<th>注释</th>
+						</tr>
+					</thead>
+					<tbody>
+						#for(c:t.list)
+						<tr>
+							<td>#(c.name??)</td>
+							<td>#(c.dataType??)</td>
+							<td>#(c.isNull??)</td>
+							<td>#(c.dft??)</td>
+							<td>#(c.comment??)</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	#end
+</div>
+#end #define js()
+<script type="text/javascript">
+	$('.grid').masonry({
+		itemSelector : '.grid-item', // use a separate class for itemSelector, other than .col-
+		percentPosition : true
+	});
+</script>
+#end
