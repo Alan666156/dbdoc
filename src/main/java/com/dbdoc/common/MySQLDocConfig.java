@@ -13,9 +13,8 @@ import com.jfinal.plugin.activerecord.dialect.Sqlite3Dialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.redis.RedisPlugin;
 import com.jfinal.template.Engine;
-import org.apache.log4j.Logger;
-
-import java.net.URL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -25,7 +24,7 @@ import java.net.URL;
  *
  */
 public class MySQLDocConfig extends JFinalConfig {
-	private static Logger logger = Logger.getLogger(MySQLDocConfig.class);
+	private static Logger logger = LoggerFactory.getLogger(MySQLDocConfig.class);
 	private static Prop config = PropKit.use("config.ini");
 	private static Prop p = loadConfig();
 	private static Prop loadConfig() {
@@ -101,9 +100,11 @@ public class MySQLDocConfig extends JFinalConfig {
 		}else {
 			logger.info("===========当前系统环境windows===========");
 //			jdbcUrl ="jdbc:sqlite://E:/tools/dbdoc/db/doc.db";
-			URL url = ClassLoader.getSystemResource("doc.db");
-			jdbcUrl = "jdbc:sqlite://" + url.getPath();
+//			URL url = ClassLoader.getSystemResource("doc.db");
+//			jdbcUrl = "jdbc:sqlite://" + url.getPath();
 		}
+		logger.info("当前URL：", Thread.currentThread().getContextClassLoader().getResource("doc.db").getPath());
+		jdbcUrl = "jdbc:sqlite://" + Thread.currentThread().getContextClassLoader().getResource("doc.db").getPath();
 		return new DruidPlugin(jdbcUrl, "1", "1");
 	}
 

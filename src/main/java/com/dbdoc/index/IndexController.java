@@ -1,16 +1,17 @@
 package com.dbdoc.index;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import com.dbdoc.common.controller.BaseController;
 import com.dbdoc.common.model.Configure;
 import com.dbdoc.configure.ConfigureService;
 import com.dbdoc.parsedb.ParseDbService;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Record;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 首页请求
  * @author fhx
@@ -18,7 +19,7 @@ import com.jfinal.plugin.activerecord.Record;
  */
 public class IndexController extends BaseController {
 	
-	public Logger logger = Logger.getLogger(this.getClass());
+	public Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	public void index() {
 		List<Configure> list = ConfigureService.service.list();

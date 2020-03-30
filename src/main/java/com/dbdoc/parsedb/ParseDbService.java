@@ -1,28 +1,23 @@
 package com.dbdoc.parsedb;
 
+import com.dbdoc.common.model.Configure;
+import com.jfinal.plugin.activerecord.*;
+import com.jfinal.plugin.activerecord.cache.EhCache;
+import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
+import com.jfinal.plugin.activerecord.dialect.OracleDialect;
+import com.jfinal.plugin.druid.DruidPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
-import org.apache.log4j.Logger;
-
-import com.dbdoc.common.model.Configure;
-import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
-import com.jfinal.plugin.activerecord.Config;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.DbKit;
-import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.plugin.activerecord.cache.EhCache;
-import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
-import com.jfinal.plugin.activerecord.dialect.OracleDialect;
-import com.jfinal.plugin.druid.DruidPlugin;
-
 public class ParseDbService {
-	public Logger logger = Logger.getLogger(this.getClass());
+	private static Logger logger = LoggerFactory.getLogger(ParseDbService.class);
 	public static final ParseDbService service = new ParseDbService();
 	
 	/**
